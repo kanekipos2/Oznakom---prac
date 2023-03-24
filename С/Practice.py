@@ -1,8 +1,9 @@
 from Discipline import *
+from enums import *
 from typing import *
 
 class Practice(Discipline):
-    def __init__(self, название, семестр, кафедра, вид_практики, руководитель_практики, тематика_практики : List):
+    def __init__(self, название: str, семестр: int, кафедра: str, вид_практики: practice_type, руководитель_практики: str, тематика_практики : List):
         super().__init__(название, семестр, кафедра)
         self.вид_практики = вид_практики
         self.руководитель_практики = руководитель_практики
@@ -15,7 +16,10 @@ class Practice(Discipline):
         self.тематика_практики.append(тематика)
 
     def удалить_тематику(self, тематика):
-        self.тематика_практики.remove(тематика)
+        try:
+            self.тематика_практики.remove(тематика)
+        except:
+            print('Не удалось найти тематику')
 
     def изменить_тематику(self, тематика, тематика_изм):
         index = self.тематика_практики.index(тематика)
@@ -27,7 +31,7 @@ class Practice(Discipline):
     def __str__(self):
 
         return f'название: {self.название}\n' \
-               f'вид практики: {self.вид_практики}\n' \
+               f'вид практики: {self.вид_практики.name}\n' \
                f'семестр: {self.семестр}\n' \
                f'кафедра: {self.кафедра}\n' \
                f'руководитель: {self.руководитель_практики}\n' \

@@ -4,7 +4,7 @@ from Practice import *
 
 
 class Plan:
-    def __init__(self, код_направления, название_направления, кафедра, список_основных_дисциплин: List[Academic],
+    def __init__(self, код_направления: str, название_направления: str, кафедра: str, список_основных_дисциплин: List[Academic],
                  список_практик: List[Practice]):
         self.код_направления = код_направления
         self.название_направления = название_направления
@@ -14,10 +14,10 @@ class Plan:
 
     def __str__(self):
         def strr():
-            s = 'спикок основных дисциплин: \n---------------\n'
+            s = '\n\nспикок основных дисциплин: \n\n---------------\n\n'
             for i in self.список_основных_дисциплин:
                 s += str(i) + '\n'
-            s += '---------------\n\nсписок практик: \n---------------\n'
+            s += '---------------\n\n\n\nсписок практик: \n\n---------------\n\n'
             for i in self.список_практик:
                 s += str(i) + "\n"
             s+='---------------'
@@ -43,17 +43,15 @@ class Plan:
     def удалить_дисциплину(self, index):
         del self.concatPract()[index]
 
+
     def __add__(self, other):
         if type(other == Academic): self.список_основных_дисциплин.append(other)
         if type(other == Practice): self.список_практик.append(other)
-
-    def __add__(self, other):
-        if type(other == Academic): self.список_основных_дисциплин.remove(other)
-        if type(other == Practice): self.список_практик.remove(other)
+        
 
     def writeFile(self):
         try:
-            with open('result.txt', 'w') as file:
+            with open('result.txt', 'w', encoding='UTF-16') as file:
                 file.write(str(self))
         except:
             print('Не удалось записать инофрмацию в файл')
